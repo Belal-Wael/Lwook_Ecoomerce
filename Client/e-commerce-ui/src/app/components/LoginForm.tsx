@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { loginInputsType, loginSchema } from '@/utils/types'
 import { loginAction } from '@/actions/Auth.actions'
@@ -57,13 +57,16 @@ function LoginForm() {
                         <Link href={'/forget-password'} className='text-sm text-amber-500 hover:underline font-medium'>Forget Password?</Link>
                     </>)
             }
-            <button type="submit" className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 cursor-pointer rounded-lg ">
+            <button className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 cursor-pointer rounded-lg ">
                 {
                     isSubmitting ? <PropagateLoader color='white' className='py-2.5' /> : <>
                         {showTwoStep ? "Confirm Two Step" : "Login"}
                     </>
                 }
             </button>
+            <div className="border-b border-gray-300 my-4 relative">
+                <span className="bg-white px-4 text-sm font-medium text-heading absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">OR</span>
+            </div>
             <LoginAndRegisterProviders />
             <p className='text-center py-2 text-sm font-medium'>Don't have an account? <Link className='text-amber-500' href={'/register'}>Sign Up</Link> </p>
         </form>

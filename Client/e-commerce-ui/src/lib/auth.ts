@@ -47,24 +47,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         async signIn({ user, account }) {
             if (account?.provider !== 'credentials')
                 return true;
-            const userFromDb = await prisma.user.findUnique({
-                where: {
-                    email: user.email as string
-                }
-            })
-            if (!userFromDb || !userFromDb?.emailVerified) return false;
+            // const userFromDb = await prisma.user.findUnique({
+            //     where: {
+            //         email: user.email as string
+            //     }
+            // })
+            // if (!userFromDb || !userFromDb?.emailVerified) return false;
             // two step check 
-            if (userFromDb.isTwoStepEnabled) {
-                const twoStepConfirm = await prisma.twoStepConfirmation.findUnique({
-                    where: {
-                        userId: userFromDb.id
-                    }
-                });
-                if (!twoStepConfirm) return false;
-                await prisma.twoStepConfirmation.delete({ // if confirmed then delete it 
-                    where: { id: twoStepConfirm.id }
-                })
-            }
+            // if (userFromDb.isTwoStepEnabled) {
+            //     const twoStepConfirm = await prisma.twoStepConfirmation.findUnique({
+            //         where: {
+            //             userId: userFromDb.id
+            //         }
+            //     });
+            //     if (!twoStepConfirm) return false;
+            //     await prisma.twoStepConfirmation.delete({ // if confirmed then delete it 
+            //         where: { id: twoStepConfirm.id }
+            //     })
+            // }
             return true;
         }
     },

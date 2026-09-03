@@ -22,43 +22,43 @@ export const loginAction = async (data: loginInputsType): Promise<LoginActionTyp
         if (!user || !user.password || !user.email) {
             return { success: false, message: "Invalid Credentials" }
         }
-        if (!user.emailVerified) {
-            // generate email verification token
-            const verificationToken = await generateVerificationToken(data.email);
-            // here send email to user 
-            await sendEmailVerification(user.email, verificationToken.token)
+        // if (!user.emailVerified) {
+        //     // generate email verification token
+        //     const verificationToken = await generateVerificationToken(data.email);
+        //     // here send email to user 
+        //     await sendEmailVerification(user.email, verificationToken.token)
 
-            return { success: false, message: "Please verify your email to login" }
-        }
+        //     return { success: false, message: "Please verify your email to login" }
+        // }
         //----------------------------------------------------------------------//
         //------------- Check if two factor enable and confirm---------------//
-        if (user.isTwoStepEnabled && user.email) {
-            if (code) {
-                const twoStepTokenFromDb = await prisma.twoStepToken.findFirst({
-                    where: { email }
-                })
-                if (!twoStepTokenFromDb)
-                    return { success: false, message: "No token provided" }
-                if (twoStepTokenFromDb.token != code)
-                    return { success: false, message: "Invalid Code" }
-                const isExpired = new Date(twoStepTokenFromDb.expires) < new Date()
-                if (isExpired)
-                    return { success: false, message: "Token Is Expired" }
-                await prisma.twoStepToken.delete({
-                    where: { id: twoStepTokenFromDb.id }
-                })
-                await prisma.twoStepConfirmation.create({
-                    data: { userId: user.id }
-                })
-                // After verifying the code, proceed with sign in
-                await signIn("credentials", { email, password, redirectTo: "/Profile" })
-                return { success: true, message: "Logged In Successfully" }
-            } else {
-                const twoStepToken = await generateTwoStepToken(email);
-                await sendEmailToResetPassword(email, twoStepToken.token);
-                return { success: true, message: "Confirmation Code Send to Your Email", twoStep: true }
-            }
-        }
+        // if (user.isTwoStepEnabled && user.email) {
+        //     if (code) {
+        //         const twoStepTokenFromDb = await prisma.twoStepToken.findFirst({
+        //             where: { email }
+        //         })
+        //         if (!twoStepTokenFromDb)
+        //             return { success: false, message: "No token provided" }
+        //         if (twoStepTokenFromDb.token != code)
+        //             return { success: false, message: "Invalid Code" }
+        //         const isExpired = new Date(twoStepTokenFromDb.expires) < new Date()
+        //         if (isExpired)
+        //             return { success: false, message: "Token Is Expired" }
+        //         await prisma.twoStepToken.delete({
+        //             where: { id: twoStepTokenFromDb.id }
+        //         })
+        //         await prisma.twoStepConfirmation.create({
+        //             data: { userId: user.id }
+        //         })
+        //         // After verifying the code, proceed with sign in
+        //         await signIn("credentials", { email, password, redirectTo: "/Profile" })
+        //         return { success: true, message: "Logged In Successfully" }
+        //     } else {
+        //         const twoStepToken = await generateTwoStepToken(email);
+        //         await sendEmailToResetPassword(email, twoStepToken.token);
+        //         return { success: true, message: "Confirmation Code Send to Your Email", twoStep: true }
+        //     }
+        // }
         //----------------------------------------------------------------------//
 
 

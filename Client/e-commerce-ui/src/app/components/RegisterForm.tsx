@@ -62,6 +62,9 @@ function RegisterForm() {
                     isSubmitting ? <PropagateLoader color='white' className='py-2.5' /> : "Sign Up"
                 }
             </button>
+            <div className="border-b border-gray-300 my-4 relative">
+                <span className="bg-white px-4 text-sm font-medium text-heading absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">OR</span>
+            </div>
             <LoginAndRegisterProviders />
 
             <p className='text-center py-2 text-sm font-medium'>Already have an account? <Link className='text-amber-500' href={'/login'}>Sign In</Link> </p>

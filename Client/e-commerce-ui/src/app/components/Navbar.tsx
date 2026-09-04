@@ -26,7 +26,16 @@ async function Navbar() {
         </Link>
         <Bell className='w-4 h-4 text-gray-600' />
         <ShoppingCartIcon />
-        <Link href={'/login'}>{session ? <CircleUserRound className='w-5 h-5 text-gray-600' /> : "Sign in"}</Link>
+        <Link href={'/login'}>{session ? session?.user?.image ? (
+          <Image
+            src={session.user.image}
+            alt={session.user.name || 'User'}
+            fill
+            className='object-cover w-5 h-5 rounded-full'
+          />
+        ) : (
+          <CircleUserRound className='w-5 h-5 text-gray-600' />
+        ) : "Sign in"}</Link>
       </div>
     </nav>
   )

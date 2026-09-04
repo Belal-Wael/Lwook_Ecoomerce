@@ -62,7 +62,7 @@ export const loginAction = async (data: loginInputsType): Promise<LoginActionTyp
         //----------------------------------------------------------------------//
 
 
-        await signIn("credentials", { email, password, redirectTo: '/Profile' })
+        await signIn("credentials", { email, password, redirectTo: '/' })
 
     } catch (error) {
 

@@ -30,7 +30,6 @@ async function Navbar() {
           <Image
             src={session.user.image}
             alt={session.user.name || 'User'}
-            fill
             className='object-cover w-5 h-5 rounded-full'
           />
         ) : (

@@ -5,7 +5,7 @@ function LoginAndRegisterProviders() {
 
     type provider = "github" | "google"
     const handleProviders = (provider: provider) => {
-        signIn(provider, { redirectTo: "/Profile" });
+        signIn(provider, { redirectTo: "/" });
     }
 
     return (

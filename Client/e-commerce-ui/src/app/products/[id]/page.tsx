@@ -5,7 +5,7 @@ import React from 'react'
 
 
 export const generateMetaData = async ({ params }: { params: { id: string } }) => {
-    const res = await fetch(`http://localhost:3000/api/productManagment/${params.id}`);
+    const res = await fetch(`https://lwook-ecoomerce.vercel.app/api/productManagment/${params.id}`);
     const product: ProductType = await res.json();
     return {
         title: product.name,

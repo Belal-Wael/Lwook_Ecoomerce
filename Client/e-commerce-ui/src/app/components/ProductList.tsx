@@ -144,6 +144,7 @@ function ProductList({ category, params }: { category: string, params: "HomePage
       }
 
       const data = await response.json();
+      console.log("Fetched products:", data);
       setProducts(data);
     } catch (error) {
       setError(error instanceof Error ? error.message : "Something went wrong");

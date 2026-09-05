@@ -138,7 +138,7 @@ function ProductList({ category, params }: { category: string, params: "HomePage
     try {
       setLoading(true)
       const categoryQuery = effectiveCategory ? `&category=${encodeURIComponent(effectiveCategory)}` : "";
-      const response = await fetch(`http://localhost:3000/api/productManagment?page=${currentPage}&limit=${limit}${categoryQuery}`);
+      const response = await fetch(`https://lwook-ecoomerce.vercel.app/api/productManagment?page=${currentPage}&limit=${limit}${categoryQuery}`);
       if (!response.ok) {
         throw new Error("Failed to load products");
       }

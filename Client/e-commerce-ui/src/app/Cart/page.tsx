@@ -129,7 +129,6 @@ function CartContent() {
   )
 }
 
-// 2. المكون الرئيسي المصدّر يغلف المكون السابق بـ Suspense
 export default function CartPage() {
   return (
     <Suspense fallback={<div className="text-center mt-12">Loading...</div>}>

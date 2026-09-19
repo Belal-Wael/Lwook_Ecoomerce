@@ -19,10 +19,12 @@ async function page({ params, searchParams }: { params: Promise<{ id: string }>,
     const { id } = await params;
     async function getProductbyID(): Promise<ProductType | null> {
         try {
-            const response = await fetch(`http://localhost:3000/api/productManagment/${id}`);
-            return await response.json();
+            const response = await fetch(`https://lwook-ecoomerce.vercel.app/api/productManagment/${id}`);
+            // const data = await response.json();
+            // console.log("Product data:", data);
+            return null;
         } catch (error) {
-            console.log(error)
+            console.log("error", error);
             return null;
         }
     }

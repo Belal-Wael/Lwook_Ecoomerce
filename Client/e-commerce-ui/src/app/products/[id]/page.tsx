@@ -45,10 +45,6 @@ async function page({ params, searchParams }: { params: Promise<{ id: string }>,
         product.productColors.find(c => c.name === selectedColor)?.imgURL
         ?? product.productColors[0].imgURL;
 
-    console.log(selectedColor)
-
-
-
 
     return (
         <div className='flex flex-col gap-3.5 lg:flex-row md:gap-12 mt-12 px-4'>

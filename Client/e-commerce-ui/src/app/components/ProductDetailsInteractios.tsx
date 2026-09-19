@@ -19,7 +19,7 @@ function ProductDetailsInteractios({ product, selectedSize, selectedColor }: { p
     const handleChange = (type: string, value: string) => {
         const Param = new URLSearchParams(searchParam.toString());
         Param.set(type, value);
-        router.push(`${(pathName)} ? ${Param.toString()}`, { scroll: false })
+        router.push(`${(pathName)}?${Param.toString()}`, { scroll: false })
     }
 
     const handleQuanityChange = (type: "inc" | "dec") => {

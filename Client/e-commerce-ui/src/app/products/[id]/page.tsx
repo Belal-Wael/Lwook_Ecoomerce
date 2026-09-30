@@ -17,7 +17,6 @@ export const generateMetaData = async ({ params }: { params: { id: string } }) =
 async function page({ params, searchParams }: { params: Promise<{ id: string }>, searchParams: Promise<{ color: string, size: string }> }) {
 
     const { id } = await params;
-    console.log(id)
     async function getProductbyID(): Promise<ProductType | null> {
         try {
             const response = await fetch(`https://lwook-ecoomerce.vercel.app/api/productManagment/${id}`);

@@ -22,7 +22,7 @@ function ProductDetailsInteractios({ product, selectedSize, selectedColor }: { p
         router.push(`${(pathName)}?${Param.toString()}`, { scroll: false })
     }
 
-    const handleQuanityChange = (type: "inc" | "dec") => {
+    const handleQuantityChange = (type: "inc" | "dec") => {
         if (type === "inc") {
             setQuantity(pre => pre + 1)
         }
@@ -80,11 +80,11 @@ function ProductDetailsInteractios({ product, selectedSize, selectedColor }: { p
             <div className='flex flex-col gap-2 text-sm'>
                 <span className='text-gray-500'>Quantity</span>
                 <div className='flex  items-center gap-2'>
-                    <button className='cursor-pointer border-1 border-gray-300 p-1' onClick={() => handleQuanityChange("dec")}>
+                    <button className='cursor-pointer border-1 border-gray-300 p-1' onClick={() => handleQuantityChange("dec")}>
                         <Minus className='w-4 h-4' />
                     </button>
                     <span>{quantity}</span>
-                    <button className='cursor-pointer border-1 border-gray-300 p-1' onClick={() => handleQuanityChange("inc")}>
+                    <button className='cursor-pointer border-1 border-gray-300 p-1' onClick={() => handleQuantityChange("inc")}>
                         <Plus className='w-4 h-4' />
                     </button>
                 </div>
